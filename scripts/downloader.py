@@ -4,10 +4,14 @@ import os
 import glob
 
 
-def download(url):
+def clear_chunks():
     files = glob.glob('chunks/*')
     for file in files:
         os.remove(file)
+
+
+def download(url):
+    clear_chunks()
 
     i = int(re.search(r':(.*)\}', re.search(r'\$\{num:(\d)+\}', url).group()).group()[1:-1])
     while True:
